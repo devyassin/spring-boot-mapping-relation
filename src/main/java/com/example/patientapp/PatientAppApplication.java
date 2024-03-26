@@ -6,6 +6,7 @@ import com.example.patientapp.Repositery.MedecinRepositery;
 import com.example.patientapp.Repositery.PatientRepositery;
 import com.example.patientapp.Repositery.RendezVousRepositery;
 import com.example.patientapp.Service.IHospitalService;
+import com.example.patientapp.Service.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +26,8 @@ public class PatientAppApplication {
 	@Bean
 	CommandLineRunner start(IHospitalService hospitalService,
 							PatientRepositery patientRepositery,
-							MedecinRepositery medecinRepositery){
+							MedecinRepositery medecinRepositery,
+							UserServiceImpl userService){
 		return args ->{
 			Stream.of("mohammed","saad","oussama").forEach(name->{
 				Patient patient=new Patient();
@@ -56,6 +58,38 @@ public class PatientAppApplication {
 			consultation.setRapportConsulation(new Date());
 			consultation.setRendezVous(rendezVous);
 			hospitalService.ajouterConsultation(consultation);
+
+
+			User user1=new User();
+			user1.setUsername("yassine lamouadden");
+			user1.setPassword("123456");
+			userService.addNewUser(user1);
+
+			User user2=new User();
+			user2.setUsername("karim");
+			user2.setPassword("123456");
+			userService.addNewUser(user2);
+
+			Stream.of("STUDENT","USER","ADMIN").forEach(name->{
+				Role role=new Role();
+				role.setRoleName(name);
+				userService.addNewRole(role);
+			});
+
+			userService.addRoleToUser("yassine lamouadden","ADMIN");
+			userService.addRoleToUser("yassine lamouadden","USER");
+			userService.addRoleToUser("karim","STUDENT");
+
+			try {
+				User user=userService.authenticate("yassine lamouadden",
+						"123456");
+				System.out.println(user);
+				user.getRoles().forEach(role->{
+					System.out.println("R:"+role);
+				});
+			}catch (Exception exception){
+				System.out.println(exception);
+			}
 		};
 	}
 }

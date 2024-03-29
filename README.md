@@ -8,10 +8,11 @@
 
 ## 3. Configurer l'unité de persistance dans le fichier `application.properties`
 ### 3.1 connextion avec H2 Database
-![H2-Connection.png](src%2Fmain%2Fresources%2Fstatic%2FH2-Connection.png)
+![H2-Connection.png](src%2Fmain%2Fresources%2FH2-Connection.png)
 
 ### 3.2 connextion avec Mysql Database
-![mysql-connection.png](src%2Fmain%2Fresources%2Fstatic%2Fmysql-connection.png)
+![mysql-connection.png](src%2Fmain%2Fresources%2Fmysql-connection.png)
+
 ## 4. Créer l'interface JPA Repository basée sur Spring data
 
 ## 5. Tester quelques opérations de gestion de produits :
@@ -23,4 +24,4 @@
 - Supprimer un produit
 
 ## 6. Diagramme :
-![diagramme.PNG](src%2Fmain%2Fresources%2Fstatic%2Fdiagramme.PNG)
+![diagramme.PNG](src%2Fmain%2Fresources%2Fdiagramme.PNG)

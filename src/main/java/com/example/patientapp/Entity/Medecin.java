@@ -14,11 +14,13 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
 public class Medecin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
+    @Column(name = "email_user")
     private String email;
     private String specialite;
     @OneToMany(mappedBy = "medecin",fetch = FetchType.LAZY)
